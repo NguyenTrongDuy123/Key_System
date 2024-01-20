@@ -1,58 +1,9 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MaGiXxScripter0/keysystemv2api/master/setup.lua"))()
+local KeySystem = _G.KSS.classes.keysystem.new("your_application_name") -- Create class KeySystem
+local Key = KeySystem:key('key_user') -- Create class Key
 
-_G.KSS -- This Key System Storage
-
-_G.KSS.classes = {
-	key = KeyClass,
-	keysystem = KeySystemClass
-}
-
-_G.KSS.data = {...}
-
-type TKey = {
-	hwid: string,
-  key: string,
-  time_expired: number,
-  checkpoint: number,
-  finish: boolean,
-  last_visit: number
-}
-
-type TApplication = {
-  name: string,
-  created_at: string,
-  website_settings: {
-    title: string,
-    description: string,
-    image: string,
-    icon: string,
-    color: string,
-    widget_id: string,
-    analytics_google_code: string
-  },
-  checkpoints: number,
-}
--- KeySystemClass
-local Keysystem: KeySystemClass = _G.KSS.classes.keysystem.new(name: <string>)
-Keysystem:getKeyURL() -> <string> -- Return URL for get key
-Keysystem:copyGetKeyURL() -- Copy GetKeyURL
-Keysystem:keyData() -> <table<TKey>> -- {...}
-Keysystem:applicationData() -> table<TApplication> -- {...}
-Keysystem:key() -> <table<KeyClass<TKey>>>
-
--- KeyClass
-local Key = Keysystem:key() -> table<KeyClass<TKey>>
-Key:verifyHWID() -> <boolean> -- Check HWID
-Key:verifyKey(key: <string>) -> <boolean> -- Check Key
-
-if Key.finish and Key:verifyHWID() and Key:verifyKey("keypupsik") then
-	warn("Valid")
+if Key.finish and Key:verifyHWID() then
+  print("Good")
 else
-	warn("Invalid")
+  print("Bad")
 end
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/MaGiXxScripter0/keysystemv2api/master/setup.lua"))()
-local KeySystem = _G.KSS.classes.keysystem.new("NTD Hub") -- Create class KeySystem
-local Key = KeySystem:key() -- Create class Key
-
-warn(Key:verifyHWID(), Key:verifyKey("keypupsik"), Key.finish)
